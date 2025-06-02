@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToothiDent | Consultorio Dental</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Estilos generales */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            line-height: 1.6;
+            color: #333;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* Header */
+        header {
+            background-color: #fff;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo img {
+            height: 50px;
+            margin-right: 10px;
+        }
+        
+        .logo h1 {
+            color: #2a9d8f;
+            font-size: 1.5rem;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 30px;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: #2a9d8f;
+        }
+        
+        .mobile-menu {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(42, 157, 143, 0.8), rgba(42, 157, 143, 0.8)), url('https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: white;
+            margin-top: 80px;
+        }
+        
+        .hero-content h2 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: #e9c46a;
+            color: #333;
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: #f4a261;
+            transform: translateY(-3px);
+        }
+        
+        /* Servicios */
+        .services {
+            padding: 80px 0;
+            background-color: #f8f9fa;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: #2a9d8f;
+            margin-bottom: 15px;
+        }
+        
+        .section-title p {
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .service-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .service-img {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .service-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .service-card:hover .service-img img {
+            transform: scale(1.1);
+        }
+        
+        .service-content {
+            padding: 25px;
+        }
+        
+        .service-content h3 {
+            color: #2a9d8f;
+            margin-bottom: 15px;
+        }
+        
+        /* Sobre Nosotros */
+        .about {
+            padding: 80px 0;
+            background-color: white;
+        }
+        
+        .about-container {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+        
+        .about-img {
+            flex: 1;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .about-img img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .about-content {
+            flex: 1;
+        }
+        
+        .about-content h2 {
+            font-size: 2.5rem;
+            color: #2a9d8f;
+            margin-bottom: 20px;
+        }
+        
+        .about-content p {
+            margin-bottom: 20px;
+            color: #666;
+        }
+        
+        /* Trabajos */
+        .team {
+            padding: 80px 0;
+            background-color: #f8f9fa;
+        }
+        
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .team-member {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        
+        .team-img {
+            height: 300px;
+            overflow: hidden;
+        }
+        
+        .team-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .team-info {
+            padding: 20px;
+        }
+        
+        .team-info h3 {
+            color: #2a9d8f;
+            margin-bottom: 5px;
+        }
+        
+        .team-info p {
+            color: #666;
+            font-style: italic;
+            margin-bottom: 15px;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .social-links a {
+            color: #2a9d8f;
+            font-size: 1.2rem;
+            transition: color 0.3s;
+        }
+        
+        .social-links a:hover {
+            color: #f4a261;
+        }
+        
+        /* Testimonios */
+        .testimonials {
+            padding: 80px 0;
+            background-color: white;
+        }
+        
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .testimonial {
+            background-color: #f8f9fa;
+            padding: 30px;
+            border-radius: 10px;
+            position: relative;
+        }
+        
+        .testimonial:before {
+            content: '"';
+            font-size: 5rem;
+            color: #2a9d8f;
+            opacity: 0.2;
+            position: absolute;
+            top: 10px;
+            left: 10px;
+        }
+        
+        .testimonial p {
+            margin-bottom: 20px;
+            font-style: italic;
+            position: relative;
+            z-index: 1;
+        }
+        
+    
+        /* Contacto */
+        .contact {
+            padding: 80px 0;
+            background-color: #f8f9fa;
+        }
+        
+        .contact-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 50px;
+        }
+        
+        .contact-info h3 {
+            color: #2a9d8f;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+        
+        .contact-info p {
+            margin-bottom: 30px;
+        }
+        
+        .contact-details {
+            margin-bottom: 30px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+        
+        .contact-item i {
+            color: #2a9d8f;
+            font-size: 1.2rem;
+            margin-right: 15px;
+            margin-top: 5px;
+        }
+        
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+        
+        .contact-form textarea {
+            height: 150px;
+            resize: vertical;
+        }
+        
+        .contact-form button {
+            background-color: #2a9d8f;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+        
+        .contact-form button:hover {
+            background-color: #21867a;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #2a9d8f;
+            color: white;
+            padding: 50px 0 20px;
+        }
+        
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-col h3 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-col h3:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 2px;
+            background-color: #e9c46a;
+        }
+        
+        .footer-col ul {
+            list-style: none;
+        }
+        
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-col ul li a {
+            color: #e0e0e0;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-col ul li a:hover {
+            color: white;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Responsive */
+        @media (max-width: 992px) {
+            .about-container {
+                flex-direction: column;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+            }
+            
+            .mobile-menu {
+                display: block;
+            }
+            
+            .hero-content h2 {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <img src="imagenes/Logo.jpg" alt="Consultorio Dental">
+                <h1>ToothiDent</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="#servicios">Servicios</a></li>
+                    <li><a href="#nosotros">Nosotros</a></li>
+                    <li><a href="#trabajos">Trabajos</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                </ul>
+                <div class="mobile-menu">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="inicio">
+        <div class="container hero-content">
+            <h2>Cuidamos de tu sonrisa</h2>
+            <p>En ToothiDent ofrecemos tratamientos dentales de calidad y contamos con un equipo profesional altamente calificado.</p>
+            <a href="#contacto" class="btn">Contactanos</a>
+        </div>
+    </section>
+
+    <!-- Servicios -->
+    <section class="services" id="servicios">
+        <div class="container">
+            <div class="section-title">
+                <h2>Nuestros Servicios</h2>
+                <p>Te ofrecemos tratamientos dentales para cuidar de tu salud bucodental.</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-img">
+                        <img src="imagenes/general.jpg" alt="Periodoncista">
+                    </div>
+                    <div class="service-content">
+                        <h3>Periodoncista</h3>
+                        <p>Revisiones periódicas, limpiezas dentales, empastes y tratamientos para mantener una boca sana.</p>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-img">
+                        <img src="imagenes/endo.jpg" alt="Endodoncista">
+                    </div>
+                    <div class="service-content">
+                        <h3>Endodoncista</h3>
+                        <p>procedimiento que permite salvar un diente dañado o infectad.</p>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-img">
+                        <img src="imagenes/pedia.jpeg" alt="Odontopediatría">
+                    </div>
+                    <div class="service-content">
+                        <h3>Odontopediatría</h3>
+                        <p>Cuidado dental especializado para niños, creando hábitos saludables desde la infancia.</p>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-img">
+                        <img src="imagenes/ortodo.jpg" alt="Ortodoncia maxilofacial">
+                    </div>
+                    <div class="service-content">
+                        <h3>Ortodoncia maxilofacial</h3>
+                        <p>Carillas, coronas y otros tratamientos para mejorar la apariencia de tu sonrisa.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sobre Nosotros -->
+    <section class="about" id="nosotros">
+        <div class="container">
+            <div class="about-container">
+                <div class="about-img">
+                    <img src="https://images.unsplash.com/photo-1550831107-1553da8c8464?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Consultorio dental">
+                </div>
+                <div class="about-content">
+                    <h2>Sobre Nosotros</h2>
+                    <p>Sonrisa Perfecta es un consultorio dental fundado en 2010 con el objetivo de ofrecer tratamientos dentales de alta calidad en un ambiente cálido y acogedor.</p>
+                    <p>Nuestro equipo de profesionales altamente calificados se mantiene actualizado con las últimas técnicas y tecnologías en odontología para ofrecer a nuestros pacientes los mejores resultados.</p>
+                    <p>Creemos en un enfoque personalizado, donde cada paciente recibe atención individualizada según sus necesidades específicas.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Contacto -->
+    <section class="contact" id="contacto">
+        <div class="container">
+            <div class="section-title">
+                <h2>Contacto</h2>
+                <p>Contáctanos para agendar tu consulta.</p>
+            </div>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3>Información de Contacto</h3>
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <h4>Dirección</h4>
+                                <p>Calle Tarango 272Aguilas 3er. Parque
+                                    01750 Álvaro Obregón, CDMMX México
+                                </p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone-alt"></i>
+                            <div>
+                                <h4>Teléfono</h4>
+                                <p>56 3448 0277</p>
+                            </div>
+                        </div>
+    
+                        <div class="contact-item">
+                            <i class="fas fa-clock"></i>
+                            <div>
+                                <h4>Horario</h4>
+                                <p>Lunes a Sabado: 10 am-9:00pm<br>Domingos: cerrado</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form">
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-col">
+                    <h3>ToothiDent</h3>
+                    <p>Consultorio dental especializado en tratamientos de calidad y un equipo profesional.</p>
+                </div>
+                <div class="footer-col">
+                    <h3>Enlaces Rápidos</h3>
+                    <ul>
+                        <li><a href="#inicio">Inicio</a></li>
+                        <li><a href="#servicios">Servicios</a></li>
+                        <li><a href="#nosotros">Nosotros</a></li>
+                        <li><a href="#contacto">Contacto</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Servicios</h3>
+                    <ul>
+                        <li><a href="#">Periodoncista</a></li>
+                        <li><a href="#">Endodoncia</a></li>
+                        <li><a href="#">Ortodoncia maxilofacial</a></li>
+                        <li><a href="#">Odontopediatría</a></li>
+                    </ul>
+                </div>
+
+    </footer>
+
+    <script>
+        // Menú móvil
+        document.querySelector('.mobile-menu').addEventListener('click', function() {
+            document.querySelector('nav ul').classList.toggle('show');
+        });
+
+        // Smooth scrolling para enlaces
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
